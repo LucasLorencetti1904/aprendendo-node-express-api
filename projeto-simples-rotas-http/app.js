@@ -7,9 +7,31 @@ const port = 3000
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send(`Rota get acessada na porta ${port}.`)
+const usuarios = []
+
+let id = 0
+
+app.get('/usuarios', (req, res) => {
+  if (usuarios.length < 1) {
+    res.status(404).send("Nenhum dado encontrado.")
+  } else {
+    res.status(200).json(usuarios)
+  }
 })
+
+app.post('/usuarios/cadastrar', (req, res) => {
+  const { nome, email } = req.body
+
+  const usuario = {
+    id: id++
+    nome: nome,
+    email: email
+  }
+
+  usuarios.push(usuario)
+
+  res.status(201).json({ message: "Dados recebidos." })
+}
 
 app.listen(port, () => {
   console.log(`Servidor ligado na rota http://localhost:${port}`)
