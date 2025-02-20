@@ -7,5 +7,6 @@ router.get('/', usuarioController.exibirUsuarios)
 
 router.post('/cadastrar', usuarioController.cadastrarUsuario)
 
+router.delete('/deletar', usuarioController.deletarUsuario)
 
 export default router
