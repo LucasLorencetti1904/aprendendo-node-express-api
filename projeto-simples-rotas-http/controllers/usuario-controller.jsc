@@ -3,26 +3,16 @@ let usuarios = []
 
 export const exibirUsuarios = async (req, res) => {
   try {
-    const { id } = req.params
     if (usuarios.length < 1) {
       res.status(200).json({ sucess: true, message: "Sem usuários cadastrados" })
       return
     } else {
-      if (isNaN(id)) {
-        res.status(200).json({ sucess: true, message: usuarios })
-        return
-      }
-      const usuarioFiltrado = usuarios.find(u => u.id == id)
-      if (!usuarioFiltrado) {
-        res.status(404).json({ success: false, message: "Usuário não encontrado" })
-        return
-      }
-      res.status(200).json({ success: true, message: usuarioFiltrado })
+      res.status(200).json({ sucess: true, message: usuarios })
       return
     }
   }
   catch(error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({ sucess: false, message: error.message })
     return
   }
 }
@@ -32,7 +22,7 @@ export const cadastrarUsuario = async (req, res) => {
     const { nome, email } =  req.body
     const novoUsuario = { nome: nome, email: email }
     if (Object.values(novoUsuario).some(v => !v)) {
-      res.status(400).json({ success: false, message: "Dados incompletos ou incorretos" })
+      res.status(400).json({ sucess: false, message: "Dados incompletos ou incorretos" })
       return
     }
     else if (usuarios.some(usuario => usuario.email === novoUsuario.email)) {
@@ -89,10 +79,8 @@ export const alterarUsuario = async (req, res) => {
     } else {
       res.status(200).json({ success: true, message: "Usuário alterado com sucesso", data: usuario })
       for (let prop in req.body) {
-        console.log(prop)
-        console.log(usuario[prop])
-        console.log(req.body[prop])
-        usuario[prop] = req.body[prop] !== undefined ? req.body[prop] : null
+        console.log(`Propriedade: ${prop}, ${req.body[prop]`)
+        usuario[prop] = req.body.hasOwnProperty(prop) ? req.body[prop] : null
       }
       return
     }
@@ -128,4 +116,3 @@ export const atualizarUsuario = async (req, res) => {
     return
   }
 }
-

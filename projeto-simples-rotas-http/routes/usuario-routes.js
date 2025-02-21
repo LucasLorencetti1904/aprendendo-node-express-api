@@ -3,10 +3,14 @@ import * as usuarioController from '../controllers/usuario-controller.js'
 
 const router = Router()
 
-router.get('/', usuarioController.exibirUsuarios)
+router.get('/:id?', usuarioController.exibirUsuarios)
 
 router.post('/cadastrar', usuarioController.cadastrarUsuario)
 
-router.delete('/deletar', usuarioController.deletarUsuario)
+router.delete('/deletar/:id', usuarioController.deletarUsuario)
+
+router.put('/alterar/:id', usuarioController.alterarUsuario)
+
+router.patch('/atualizar/:id', usuarioController.atualizarUsuario)
 
 export default router
