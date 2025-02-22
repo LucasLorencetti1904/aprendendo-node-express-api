@@ -9,8 +9,6 @@ router.post('/cadastrar', usuarioController.cadastrarUsuario)
 
 router.delete('/deletar/:id', usuarioController.deletarUsuario)
 
-router.put('/alterar/:id', usuarioController.alterarUsuario)
-
 router.patch('/atualizar/:id', usuarioController.atualizarUsuario)
 
 export default router

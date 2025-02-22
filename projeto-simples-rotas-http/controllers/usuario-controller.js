@@ -29,8 +29,7 @@ export const exibirUsuarios = async (req, res) => {
 
 export const cadastrarUsuario = async (req, res) => {
   try {
-    const { nome, email } =  req.body
-    const novoUsuario = { nome: nome, email: email }
+    const novoUsuario = { ...req.body }
     if (Object.values(novoUsuario).some(v => !v)) {
       res.status(400).json({ success: false, message: "Dados incompletos ou incorretos" })
       return
@@ -70,39 +69,6 @@ export const deletarUsuario = async (req, res) => {
   }
 }
 
-export const alterarUsuario = async (req, res) => {
-  try {
-    const { id } = req.params
-    const email = req.body.email
-    const usuario = usuarios.find(u => u.id == id)
-    if (!usuario) {
-      res.status(404).json({ success: false, message: "Usuário não encontrado" })
-      return
-    }
-    else if (!email) {
-      res.status(400).json({ success: false, message: "Email faltando" })
-      return
-    }
-    else if (usuarios.some(u => email == u.email)) {
-      res.status(409).json({ success: false, message: "O email já existe" })
-      return
-    } else {
-      res.status(200).json({ success: true, message: "Usuário alterado com sucesso", data: usuario })
-      for (let prop in req.body) {
-        console.log(prop)
-        console.log(usuario[prop])
-        console.log(req.body[prop])
-        usuario[prop] = req.body[prop] !== undefined ? req.body[prop] : null
-      }
-      return
-    }
-  }
-  catch(error) {
-    res.status(500).json({ success: false, message:  error.message })
-    return
-  }
-}
-
 export const atualizarUsuario = async (req, res) => {
   try {
     const { id } = req.params
@@ -128,4 +94,3 @@ export const atualizarUsuario = async (req, res) => {
     return
   }
 }
-
