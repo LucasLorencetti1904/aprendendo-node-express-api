@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cadastrar Produto</title>
+    <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <form class="d-flex ms-auto p-4">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar Produto">
+          <button class="btn btn-primary">Pesquisar</button>
+        </form>
+      </div>
+    </nav>
+    <div class="container p-4">
+      <h1 class="fw-bold fs-1">Cadastrar Produto</h1>
+      <form>
+        <div class="my-3">
+          <label for="inputNome" class="form-label">Nome do Produto</label>
+          <input name="nome" id="inputNome" type="text" class="form-control">
+        </div>
+        <div class="my-3">
+          <label for="inputCategoria" class="form-label">Categoria do Produto</label>
+          <input name="categoria" id="inputCategoria" type="text" class="form-control">
+        </div>
+        <div class="my-3">
+          <label for="inputQuantidade" class="form-label">Quantidade</label>
+          <input name="quantidade" id="inputQuantidade" type="number" class="form-control">
+        </div>
+        <div class="my-3">
+          <label for="inputPreco" class="form-label">Preço do Produto</label>
+          <input name="preco" id="inputPreco" type="number" class="form-control">
+        </div>
+        <button class="btn btn-primary d-block mx-auto">Cadastrar</button>
+      </form>
+    </div>
+    <script src="styles/bootstrap/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
