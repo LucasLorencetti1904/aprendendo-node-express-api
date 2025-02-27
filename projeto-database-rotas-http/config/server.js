@@ -1,19 +1,18 @@
 import express from 'express'
-import { testarConexaoDB } from "./database.js"
+import * as database from "./database.js"
 
 const app = express()
 const port = 3000
 
 const iniciarServidor = async () => {
     try {
-        const conexao = await testarConexaoDB()
-        if (!conexao.ok) {
-            throw new Error('Erro de conexão com o banco de dados.')
-        }
+        const sequelize = database.conectar()
+        await database.autenticar(sequelize)
+        await database.sincronizar(sequelize)
         app.listen(port, () => console.log(`Servidor rodando na porta ${port}.`))
     }
     catch(error) {
-        console.log(`Erro de servidor: ${error}`)
+        console.log(`Erro de servidor: ${error.message}\n${error.stack}`)
     }
 }
 
