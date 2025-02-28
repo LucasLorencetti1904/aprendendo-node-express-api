@@ -11,33 +11,35 @@
   <body>
     <div class="container p-4">
       <h1 class="fw-bold fs-1 text-center">Adicionar Tarefa</h1>
-      <form>
+      <form id="formulario">
         <div class="my-3">
-          <label for="inputTitulo" class="form-label">Título</label>
-          <input name="titulo" id="inputTitulo" placeholder="Título da Tarefa" type="text" class="form-control">
+          <label for="inputTitulo" class="form-label">Título <span class="text-danger">*</span></label>
+          <input name="titulo" id="inputTitulo" placeholder="Título da Tarefa" type="text" class="form-control obrigatorio">
+          <span class="invalid-feedback">Título necessário</span>
         </div>
         <div class="my-3">
-          <label for="inputAssunto" class="form-label">Assunto</label>
+          <label for="inputAssunto" class="form-label">Assunto (Opcional)</label>
           <textarea name="assunto" id="inputAssunto" rows="8" class="form-control" placeholder="Determinar Assunto"></textarea>
         </div>
         <div class="my-3">
-          <label for="inputPrazo" class="form-label">Prazo</label>
+          <label for="inputPrazo" class="form-label">Prazo (Opcional)</label>
           <input name="prazo" id="inputPrazo" type="date" class="form-control">
         </div>
         <div class="my-3">
-          <label for="selectPrioridade" class="form-label">Prioridade</label>
-          <select name="prioridade" id="selectPrioridade" class="form-control">
+          <label for="selectPrioridade" class="form-label">Prioridade <span class="text-danger">*</span></label>
+          <select name="prioridade" id="selectPrioridade" class="form-select obrigatorio">
             <option value="" selected disabled>Selecionar</option>
             <option value="alta">Alta</option>
             <option value="media">Média</option>
             <option value="baixa">Baixa</option>
           </select>
+          <span class="invalid-feedback">Prioridade Necessária</span>
         </div>
         <button class="btn btn-primary btn-md d-block mx-auto my-4 w-50">Adicionar</button>
         <a href="javascript:history.back()" class="btn btn-danger btn-md d-block mx-auto mt-3 w-50">Voltar</a>
       </form>
     </div>
     <script src="styles/bootstrap/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="../assets/script.js"></script>
   </body>
 </html>
