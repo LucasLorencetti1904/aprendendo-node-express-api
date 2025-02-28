@@ -1,26 +1,14 @@
-import dotenv from 'dotenv'
 import { Sequelize } from 'sequelize'
 
-dotenv.config()
+export const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: './produtos.db',
+    logging: false
+})
 
-export const conectar = () => {
-    try {
-        if (!process.env.DB_URL) {
-            throw new Error('URL de conexão do banco de dados não definida.')
-        }
-        const sequelize = new Sequelize({
-            dialect: 'sqlite',
-            storage: process.env.DB_URL,
-            logging: false
-        })
-        return sequelize
-    }
-    catch(error) {
-        console.log(`Erro de conexão com o banco de dados:\n\n${error.message}\n${error.stack}`)
-    }
-}
+if (!sequelize) throw new Error('Erro de conexão com o banco de dados')
 
-export const autenticar = async (sequelize) => {
+export const autenticar = async () => {
     try {
         await sequelize.authenticate()
         console.log('Banco de dados autenticado.')
@@ -30,7 +18,7 @@ export const autenticar = async (sequelize) => {
     }
 }
 
-export const sincronizar = async (sequelize) => {
+export const sincronizar = async () => {
     try {
         await sequelize.sync({ force: false, alter: true })
         console.log('Banco de dados sincronizado.')
