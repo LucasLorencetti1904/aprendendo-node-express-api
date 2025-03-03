@@ -32,3 +32,15 @@ export const selectProdutos = async (filtros) => {
         throw new Error(`Erro ao selecionar produto(s):\n\n${error.message}`)
     }
 }
+
+export const deleteProduto = async (id) => {
+    try {
+        const produtoDeletado = await Produto.findByPk(id)
+        await Produto.destroy({ where: { id } })
+        return produtoDeletado
+    }
+    catch(error) {
+        console.error(error)
+        throw new Error(`Erro ao deletar produto(s):\n\n${error.message}`)
+    }
+}

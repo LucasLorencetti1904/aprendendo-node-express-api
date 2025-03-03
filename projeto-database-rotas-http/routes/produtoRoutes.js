@@ -7,4 +7,6 @@ router.get('/:id?', controllers.procurarProdutos)
 
 router.post('/cadastrar/', controllers.cadastrarProduto)
 
+router.delete('/deletar/:id?', controllers.deletarProdutos)
+
 export default router
