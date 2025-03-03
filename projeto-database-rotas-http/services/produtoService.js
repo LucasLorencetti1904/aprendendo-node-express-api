@@ -44,3 +44,15 @@ export const deleteProduto = async (id) => {
         throw new Error(`Erro ao deletar produto(s):\n\n${error.message}`)
     }
 }
+
+export const updateProduto = async (id, registros) => {
+    try {
+        const produtoAtualizado = await Produto.findByPk(id)
+        await Produto.update(registros, { where: { id } })
+        return produtoAtualizado
+    }
+    catch(error) {
+        console.error(error)
+        throw new Error(`Erro ao atualizar produto(s):\n\n${error.message}`)
+    }
+}

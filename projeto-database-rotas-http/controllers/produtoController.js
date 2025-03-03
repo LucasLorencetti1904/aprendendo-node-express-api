@@ -1,24 +1,16 @@
 import * as services from "../services/produtoService.js"
+import * as util from "../util/utilities.js"
 
 export const cadastrarProduto = async (req, res) => {
     try {
         if (Object.keys(req.body).filter(p => p != req.body.descricao).length < 1) {
             return res.status(400).json({ message: 'Por favor, preencha todos os campos' })
         }
-        let { codigo, quantidade } = req.body
-        const codigoExistente = await services.selectProdutos({ codigo })
-        if (codigoExistente.length > 0) {
-            return res.status(409).json({ message: 'Código informado já existe' })
+        if (await util.codigoJaExistente(req.body.codigo)) {
+            res.status(409).json({ message: 'Código informado já existe' })
         }
-        req.body.precoTotal = req.body.preco * quantidade
-        req.body.preco = new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(req.body.preco)
-          req.body.precoTotal = new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          }).format(req.body.precoTotal)
+        req.body.precoTotal = util.converterParaReais(req.body.preco * req.body.quantidade)
+        req.body.preco = util.converterParaReais(req.body.preco)
         const novoProduto = await services.insertProduto(req.body)
         return res.status(201).json({ message: 'Produto cadastrado', produto: novoProduto })
     }
@@ -49,7 +41,7 @@ export const procurarProdutos = async (req, res) => {
     }
 }
 
-export const deletarProdutos = async (req, res) => {
+export const deletarProduto = async (req, res) => {
     try {
         if (!req.params.id) {
             return res.status(400).json({ message: 'Por favor insira um id.' })
@@ -62,6 +54,26 @@ export const deletarProdutos = async (req, res) => {
     }
     catch(error) {
         console.error(error)
-        return res.status(500).json({ error: 'Erro ao deletar produtos.' })
+        return res.status(500).json({ error: 'Erro ao deletar produto.' })
+    }
+}
+
+export const atualizarProduto = async (req, res) => {
+    try {
+        if (!req.params.id) {
+            return res.status(400).json({ message: 'Por favor insira um id.' })
+        }
+        if (Object.keys(req.body).length < 1) {
+            return res.status(400).json({ message: 'Por favor insira os campos.' })
+        }
+        const produtoAtualizado = await services.updateProduto(req.params.id, req.body)
+        if (!produtoAtualizado) {
+            return res.status(404).json({ message: 'Produto não encontrado' })
+        }
+        return res.status(200).json({ message: 'Produto atualizado', produto: produtoAtualizado }) 
+    }
+    catch(error) {
+        console.error(error)
+        return res.status(500).json({ error: 'Erro ao atualizar produto.' })
     }
 }
