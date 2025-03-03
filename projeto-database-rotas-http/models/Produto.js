@@ -1,7 +1,7 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../config/database.js";
+import { DataTypes } from "sequelize"
+import { sequelize } from "../config/database.js"
 
-const Roupas = sequelize.define('Roupas', {
+const Produto = sequelize.define('Produto', {
     nome: {
         type: DataTypes.STRING,
         allowNull: false
@@ -19,7 +19,7 @@ const Roupas = sequelize.define('Roupas', {
         type: DataTypes.TEXT,
         allowNull: true
     },
-    precoUnitario: {
+    preco: {
         type: DataTypes.DECIMAL,
         allowNull: false
     },  
@@ -32,8 +32,8 @@ const Roupas = sequelize.define('Roupas', {
         allowNull: false
     }
 }, {
-    tableName: 'roupas',
+    tableName: 'produtos',
     timestamps: true
 })
 
-export default Roupas
+export default Produto
