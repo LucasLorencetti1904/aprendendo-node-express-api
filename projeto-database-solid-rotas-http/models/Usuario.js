@@ -1,6 +1,7 @@
 import database from '../config/database.js'
 import bcrypt, { genSalt } from 'bcrypt'
-import { isValid } from 'date-fns'
+import { isValid, differenceInYears } from 'date-fns'
+import cep from 'cep-promise'
 import { isValidPhoneNumber } from 'libphonenumber-js'
 import { DataTypes } from 'sequelize'
 import { Hooks } from 'sequelize/lib/hooks'
@@ -19,14 +20,14 @@ Usuario.init(
             allowNull: false,
             unique: true,
             validate: {
-                len: [4, 12]
+                len: [4, 50]
             }
         },
         usuario: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [4, 50]
+                len: [4, 12]
             }
         },
         email: {
@@ -53,8 +54,14 @@ Usuario.init(
             allowNull: true,
             validate: {
                 dataValida(value) {
+                    if (!value) {
+                        return
+                    }
                     if (!isValid(new Date(value))) {
                         throw new Error('Por favor, insira uma data válida.')
+                    }
+                    if (differenceInYears(new Date(), data) < 18) {
+                        throw new Error('Essa idade não é permitida.')
                     }
                 }
             }
@@ -64,6 +71,9 @@ Usuario.init(
             allowNull: true,
             validate: {
                 telefoneValido(value) {
+                    if (!value) {
+                        return
+                    }
                     if (!isValidPhoneNumber(value, 'BR')) {
                         throw new Error('Por favor, insira um número de telefone válido.')
                     }
@@ -76,6 +86,9 @@ Usuario.init(
             unique: true,
             validate: {
                 async cepValido(value) {
+                    if (!value) {
+                        return
+                    }
                     try {
                         return await cep(value)
                     }

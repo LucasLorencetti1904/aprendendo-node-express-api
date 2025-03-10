@@ -18,6 +18,7 @@
     "express-validator": "^7.2.1",
     "libphonenumber-js": "^1.12.5",
     "sequelize": "^6.37.5",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "validator": "^13.12.0"
   }
 }

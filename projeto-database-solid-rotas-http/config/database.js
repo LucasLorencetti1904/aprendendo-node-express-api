@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
 
-class Database {
+export default class Database {
     constructor() {
         this.sequelize = new Sequelize({
             dialect: 'sqlite',
@@ -29,5 +29,3 @@ class Database {
         }
     }
 }
-
-export default new Database()

@@ -2,7 +2,7 @@ import express from 'express'
 // import routers from '../routes/usuarioRoutes.js'
 import database from './database.js'
 
-class Server {
+export default class Server {
     constructor() {
         this.app = express()
         this.middlewares()
@@ -27,5 +27,3 @@ class Server {
         }
     }
 }
-
-export default new Server()
