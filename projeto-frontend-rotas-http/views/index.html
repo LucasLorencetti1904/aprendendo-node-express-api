@@ -4,39 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Tarefas</title>
+    <title>Ferramentas</title>
     <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
     <div class="container p-4">
-      <h1 class="fw-bold fs-1 text-center">Adicionar Tarefa</h1>
+      <h1 class="fw-bold fs-1 text-center">Adicionar Ferramenta</h1>
       <form id="formulario">
         <div class="my-3">
-          <label for="inputTitulo" class="form-label">Título <span class="text-danger">*</span></label>
-          <input name="titulo" id="inputTitulo" placeholder="Título da Tarefa" type="text" class="form-control obrigatorio">
-          <span class="invalid-feedback">Título necessário</span>
-        </div>
-        <div class="my-3">
-          <label for="inputAssunto" class="form-label">Assunto (Opcional)</label>
-          <textarea name="assunto" id="inputAssunto" rows="8" class="form-control" placeholder="Determinar Assunto"></textarea>
-        </div>
-        <div class="my-3">
-          <label for="inputPrazo" class="form-label">Prazo (Opcional)</label>
-          <input name="prazo" id="inputPrazo" type="date" class="form-control">
-        </div>
-        <div class="my-3">
-          <label for="selectPrioridade" class="form-label">Prioridade <span class="text-danger">*</span></label>
-          <select name="prioridade" id="selectPrioridade" class="form-select obrigatorio">
-            <option value="" selected disabled>Selecionar</option>
-            <option value="alta">Alta</option>
-            <option value="media">Média</option>
-            <option value="baixa">Baixa</option>
+          <label for="tipo" class="form-label">Tipo de Ferramenta<span class="text-danger">*</span></label>
+          <select id="tipo" required name="tipo" class="form-select">
+              <option selected disabled value="">Selecionar</option>
+              <option value="tubo">Tubo</option>
+              <option value="perfil">Perfil</option>
           </select>
-          <span class="invalid-feedback">Prioridade Necessária</span>
         </div>
-        <button class="btn btn-primary btn-md d-block mx-auto my-4 w-50">Adicionar</button>
-        <a href="javascript:history.back()" class="btn btn-danger btn-md d-block mx-auto mt-3 w-50">Voltar</a>
+        <div id="formPerfil" class="oculto">
+            <div class="my-3">
+              <label for="empresa" class="form-label">Empresa<span class="text-danger">*</span></label>
+              <input name="empresa" placeholder="Ex: 4021" type="text" class="form-control">
+            </div>
+            <div class="my-3">
+              <label for="cliente" class="form-label">Cliente<span class="text-danger">*</span></label>
+              <input name="cliente" class="form-control" placeholder="Ex: 002">
+            </div>
+            <div class="my-3">
+              <label for="categoria" class="form-label">Categoria<span class="text-danger">*</span></label>
+              <select name="categoria" class="form-select">
+                <option value="" selected disabled>Selecionar</option>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+              </select>
+            </div>
+        </div>
+        <div id="formTubo" class="oculto">
+            <div class="my-3">
+              <label for="polegadas" class="form-label">Polegadas<span class="text-danger">*</span></label>
+              <input name="polegadas" placeholder="Ex: 8" type="text" class="form-control">
+            </div>
+            <div class="my-3">
+              <label for="matriz" class="form-label">Matriz<span class="text-danger">*</span></label>
+              <input name="matriz" class="form-control" placeholder="Ex: 74">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-md d-block mx-auto my-4 w-50">Adicionar</button>
+        <span id="result"></span>
       </form>
     </div>
     <script src="styles/bootstrap/js/bootstrap.min.js"></script>
