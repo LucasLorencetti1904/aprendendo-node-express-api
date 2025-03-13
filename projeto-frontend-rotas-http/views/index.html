@@ -12,42 +12,49 @@
     <div class="container p-4">
       <h1 class="fw-bold fs-1 text-center">Adicionar Ferramenta</h1>
       <form id="formulario">
-        <div class="my-3">
+        <div id="" class="my-3">
           <label for="tipo" class="form-label">Tipo de Ferramenta<span class="text-danger">*</span></label>
-          <select id="tipo" required name="tipo" class="form-select">
+          <select id="tipo" name="tipo" class="form-select">
               <option selected disabled value="">Selecionar</option>
               <option value="tubo">Tubo</option>
               <option value="perfil">Perfil</option>
           </select>
+          <div class="invalid-feedback">Por favor escolha uma opção.</div>
         </div>
         <div id="formPerfil" class="oculto">
             <div class="my-3">
               <label for="empresa" class="form-label">Empresa<span class="text-danger">*</span></label>
               <input name="empresa" placeholder="Ex: 4021" type="text" class="form-control">
+              <div class="invalid-feedback">Por favor preencha esse campo.</div>
             </div>
             <div class="my-3">
               <label for="cliente" class="form-label">Cliente<span class="text-danger">*</span></label>
-              <input name="cliente" class="form-control" placeholder="Ex: 002">
+              <input name="cliente" placeholder="Ex: 002" type="text" class ="form-control">
+              <div class="invalid-feedback">Por favor preencha esse campo.</div>
             </div>
             <div class="my-3">
               <label for="categoria" class="form-label">Categoria<span class="text-danger">*</span></label>
               <select name="categoria" class="form-select">
                 <option value="" selected disabled>Selecionar</option>
+                <option value="nenhuma">Nenhuma</option>
                 <option value="a">A</option>
                 <option value="b">B</option>
                 <option value="c">C</option>
                 <option value="d">D</option>
               </select>
+              <div class="invalid-feedback">Por favor escolha uma opção.</div>
             </div>
         </div>
         <div id="formTubo" class="oculto">
             <div class="my-3">
               <label for="polegadas" class="form-label">Polegadas<span class="text-danger">*</span></label>
               <input name="polegadas" placeholder="Ex: 8" type="text" class="form-control">
+              <div class="invalid-feedback">Por favor preencha esse campo.</div>
             </div>
             <div class="my-3">
               <label for="matriz" class="form-label">Matriz<span class="text-danger">*</span></label>
-              <input name="matriz" class="form-control" placeholder="Ex: 74">
+              <input name="matriz" class="form-control" placeholder="Ex: 74" type="text">
+              <div class="invalid-feedback">Por favor preencha esse campo.</div>
             </div>
         </div>
         <button type="submit" class="btn btn-primary btn-md d-block mx-auto my-4 w-50">Adicionar</button>
