@@ -3,37 +3,45 @@ const formTubo = document.getElementById("formTubo")
 const tipo = document.getElementById("tipo")
 
 tipo.addEventListener("change", () => {
-    if (tipo.value == "tubo") {
-        formPerfil.classList.add("oculto")
-        formTubo.classList.remove("oculto")
+    
+    if (tipo.value == "perfil") {
+        formTubo.classList.add("oculto")
+        formPerfil.classList.remove("oculto")
         
-        inputsPerfil.forEach((input) => {
+        inputsTubo
+        .forEach((input) => {
             input.value = ""
             ocultarErro(input)
         })
         return
     }
-    formTubo.classList.add("oculto")
-    formPerfil.classList.remove("oculto")
     
-    inputsTubo.forEach((input) => {
-        input.value = ""
-        ocultarErro(input)
-    })
+    formPerfil.classList.add("oculto")
+    formTubo.classList.remove("oculto")
+    
+    inputsPerfil
+        .forEach((input) => {
+            input.value = ""
+            ocultarErro(input)
+        })
+    
 })
 
 
 
 const inputsGerais = document.querySelectorAll("input, select")
 
-inputsGerais.forEach((input) => {
-    input.addEventListener("input", () => {
-        if (input.value.trim()) {
-            ocultarErro(input)
-            return
-        }
+inputsGerais
+    .forEach((input) => {
+        input.addEventListener("input", () => {
+            
+            if (input.value.trim()) {
+                ocultarErro(input)
+                return
+            }
+            
+        })
     })
-})
 
 
 
@@ -42,42 +50,65 @@ const inputsPerfil = formPerfil.querySelectorAll('input, select')
 const formulario = document.getElementById("formulario")
 
 formulario.addEventListener("submit", async (e) => {
+    
     e.preventDefault()
-    if (!tipo.value.trim()) {
-        exibirErro(tipo)
+    
+    let mensagem = invalido(tipo)
+    if (invalido(tipo)) {
+        exibirErro(tipo, mensagem)
         return
     }
-    const arrayInputs = Array.from((tipo.value == "tubo"
-        ? inputsTubo
-        : inputsPerfil
+    
+    const arrayInputs = Array.from((tipo.value == "perfil"
+        ? inputsPerfil
+        : inputsTubo
     ))
-    arrayInputs.forEach((input) => {
-        !input.value.trim() 
-            ? exibirErro(input)
-            : ocultarErro(input)
-    })
-    const erro = arrayInputs.some((input) => !input.value.trim())
+    
+    arrayInputs
+        .forEach((input) => {
+            mensagem = invalido(input)
+            if (invalido(input)) {
+                exibirErro(input, mensagem)
+            }
+        })
+    
+    const erro = arrayInputs.some((input) => invalido(input))
+    
     if (erro) return
+    
     const dados = {}
     const inputs = new FormData(formulario)
-    inputs.forEach((valor, propriedade) => {
-        if (valor) {
-            dados[propriedade] = valor
-        }
-    })
+    
+    inputs
+        .forEach((valor, propriedade) => {
+            if (valor) {
+                dados[propriedade] = valor
+            }
+        })
+    
     const endpoint = "http://localhost:3000/salvar"
+    
     try {
-        const dados = await salvarFerramenta(endpoint)
+        const dadosRecebidos = await salvarFerramenta(endpoint)
     }
+    
     catch(error) {
         console.error(error)
     }
-    Array.from(inputsGerais)
+    
+    arrayInputs
         .filter(e => e.id != "tipo")
         .forEach((input) => input.value = "")
+        
     alert(
-        dados.tipo == "tubo"
-            ? `${dados.polegadas}"${dados.matriz}`
-            : `${dados.empresa}/${dados.cliente}${dados.categoria.toUpperCase()}`
+        (dados.tipo == "perfil"
+            ? `${dados.empresa}/${dados.cliente}${
+                dados.categoria == "nenhuma"
+                    ? ""
+                    : dados.categoria.toUpperCase()
+                }`
+            : `${dados.polegadas}"${dados.matriz}`)
+        + ` (${dataAtual()} às ${horarioAtual()})`
     )
+    
 })
