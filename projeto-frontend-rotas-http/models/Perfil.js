@@ -19,5 +19,5 @@ Perfil.init({
 }, {
     database: database.sequelize,
     timestamps: true,
-    tableName: "perfis"
+    tableName: "perfil"
 })
