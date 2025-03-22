@@ -1,56 +1,39 @@
-import { Op } from "sequelize"
+import BaseRepository from "../repositories/BaseRepository"
 
 export default class BaseService {
-    constructor(Repository) {
-        this.repository = Repository
+    constructor(tipo) {
+        this.repository = new BaseRepository(tipo)
     }
-    
-    async createData(propriedades) {
+    async listarRegistros() {
         try {
-           return await this.repository.insert(propriedades) 
+            return await this.repository.selectData()
         }
         catch(error) {
             throw new Error(error.message)
         }
     }
-    
-    async getData(filtros) {
+
+    async salvarRegistro(dados) {
         try {
-            if (!filtros) {
-                return await this.repository.selectAll()
-            }
-            const where = {}
-            Object.keys(filtros)
-                .forEach(propriedade => {
-                    where[propriedade] = {
-                        [Op.like]: `%%${filtros[propriedade]}%%` 
-                    }
-                })
-            return await this.repository.select({ where })
+            return await this.repository.insertData(dados)
         }
         catch(error) {
             throw new Error(error.message)
         }
     }
-    
-    async deleteData(id) {
+
+    async deletarRegistro(id) {
         try {
-            if (!id) {
-                throw new Error("ID está vazio.")
-            }
-            return await this.repository.delete(id)
+            return await this.repository.deleteData(id)
         }
         catch(error) {
             throw new Error(error.message)
         }
     }
-    
-    async updateData(id, propriedades) {
+
+    async atualizarRegistro(id, novosDados) {
         try {
-            if (!id) {
-                throw new Error("Id está vazio.")
-            }
-            return await this.repository.update(id, propriedades)
+            return await this.repository.updateData(id, novosDados)
         }
         catch(error) {
             throw new Error(error.message)

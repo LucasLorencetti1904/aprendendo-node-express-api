@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize"
 import database from "../config/Database.js"
 
-class Tubo extends Model {}
+export default class Tubo extends Model {}
 
 Tubo.init({
     polegadas: {

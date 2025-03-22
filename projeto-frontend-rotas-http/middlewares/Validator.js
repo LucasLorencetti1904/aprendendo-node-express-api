@@ -5,7 +5,7 @@ export default class Validator {
     static validarCampos(tipo) {
         const validacaoTipo = [
             body("tipo")
-                .isNotEmpty()
+                .notEmpty()
                 .withMessage("O tipo não pode ser vazio.")
                 .custom((value) => {
                     if (!["perfil", "tubo"].includes(value)) {
@@ -19,21 +19,21 @@ export default class Validator {
                 return [
                     ...validacaoTipo,
                     body("empresa")
-                    .isNotEmpty()
+                    .notEmpty()
                     .withMessage("O campo empresa não pode estar vazio.")
                     .isLength({ min: 4, max: 4 })
                     .withMessage("O campo empresa deve conter 4 caracteres.")
-                    .isNumber()
+                    .isNumeric()
                     .withMessage("O campo empresa deve conter apenas números."),
                     body("cliente")
-                    .isNotEmpty()
+                    .notEmpty()
                     .withMessage("O campo cliente não pode estar vazio.")
                     .isLength({ min: 3, max: 3 })
                     .withMessage("O campo cliente deve conter 3 caracteres.")
-                    .isNumber()
+                    .isNumeric()
                     .withMessage("O campo cliente deve conter apenas números."),
                     body("categoria")
-                    .isNotEmpty()
+                    .notEmpty()
                     .withMessage("A categoria não pode estar vazia.")
                     .custom((value) => {
                         if (/\d/.test(value)) {
@@ -50,18 +50,18 @@ export default class Validator {
                 return [
                     ...validacaoTipo,
                     body("polegadas")
-                    .isNotEmpty()
+                    .notEmpty()
                     .withMessage("O campo polegadas não pode estar vazio.")
                     .isLength({ min: 1, max: 2 })
                     .withMessage("O campo polegadas deve conter entre 1 e 2 caracteres.")
-                    .isNumber()
+                    .isNumeric()
                     .withMessage("O campo polegadas deve conter apenas números."),
                     body("matriz")
-                    .isNotEmpty()
+                    .notEmpty()
                     .withMessage("O campo matriz não pode estar vazio.")
                     .isLength({ min: 2, max: 2 })
                     .withMessage("O campo matriz deve conter 2 caracteres.")
-                    .isNumber()
+                    .isNumeric()
                     .withMessage("O campo matriz deve conter apenas números.")
                 ]
                 break

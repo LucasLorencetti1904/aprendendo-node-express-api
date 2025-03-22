@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize"
 import database from "../config/Database.js"
 
-class Perfil extends Model {}
+export default class Perfil extends Model {}
 
 Perfil.init({
     empresa: {

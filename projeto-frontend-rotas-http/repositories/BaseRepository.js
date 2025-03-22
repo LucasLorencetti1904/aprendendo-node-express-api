@@ -1,52 +1,48 @@
+import Perfil from "../models/Perfil.js"
+import Tubo from "../models/Tubo.js"
+
 export default class BaseRepository {
-    constructor(Model) {
-        this.model = Model
+    constructor(tipo) {
+        this.model = tipo == "perfil"
+            ? Perfil
+            : Tubo
     }
-    
-    async insert(propriedades) {
-        try {
-            return await this.model.create(propriedades)
-        }
-        catch(error) {
-            throw new Error(`Erro ao criar ${this.model.name}`)
-        }
-    }
-    
-    async select(filtros) {
-        try {
-            return await this.model.findAll(filtro)
-        }
-        catch(error) {
-            throw new Error(`Erro ao procurar ${this.model.name}`)
-        }
-    }
-    
-    async selectAll() {
+
+    async selectData() {
         try {
             return await this.model.findAll()
         }
         catch(error) {
-            throw new Error(`Erro ao procurar ${this.model.name}`)
+            throw new Error("Erro ao procurar dados.")
         }
     }
-    
-    async delete(id) {
+
+    async insertData(dados) {
         try {
-            const dado = await this.model.findByPk(id)
+            return await this.model.create(dados)
+        }
+        catch(error) {
+            throw new Error("Erro ao salvar dados.")
+        }
+    }
+
+    async deleteData(id) {
+        try {
+            const dado = this.model.findByPk(id)
             return await dado.destroy()
         }
         catch(error) {
-            throw new Error(`Erro ao deletar ${this.model.name}`)
+            throw new Error("Erro ao deletar dados.")
         }
     }
-    
-    async update(id, propriedades) {
+
+    async updateData(id, novosDados) {
         try {
-            const dado = await this.model.findByPk(id)
-            return await dado.update(propriedades)
+            const dado = this.model.findByPk(id)
+            return await dado.update(novosDados)
         }
         catch(error) {
-            throw new Error(`Erro ao atualizar ${this.model.name}`)
+            throw new Error("Erro ao atualizar dados.")
         }
     }
 }
