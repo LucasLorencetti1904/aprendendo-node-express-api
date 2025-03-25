@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ferramentas</title>
+    <title>Itens</title>
     <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
-    <div class="container p-4">
-      <h1 class="fw-bold fs-1 text-center">Adicionar Ferramenta</h1>
+    <div class="container p-4 oculto">
+      <h1 class="fw-bold fs-1 text-center">Adicionar Item</h1>
       <form id="formulario">
         <div id="" class="my-3">
-          <label for="tipo" class="form-label">Tipo de Ferramenta<span class="text-danger">*</span></label>
+          <label for="tipo" class="form-label">Tipo de Item<span class="text-danger">*</span></label>
           <select id="tipo" name="tipo" class="form-select">
               <option selected disabled value="">Selecionar</option>
               <option value="tubo">Tubo</option>
@@ -62,6 +62,47 @@
         <button type="submit" class="btn btn-primary btn-md d-block mx-auto my-4 w-50">Adicionar</button>
         <span id="result"></span>
       </form>
+    </div>
+    <div class="container p-4 d-flex align-items-center justify-content-center">
+        <h1 class="position-fixed top-0 mt-3">Perfis</h1>
+        <ul class="list-group gap-2 text-center mt-5" style="width: 80%; height: 72vh; overflow-y: auto;">
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+            <li class="list-group-item">4045/001A</li>
+        </ul>
+        <div class="d-flex flex-column gap-2 position-fixed bottom-0 mb-4 w-50">
+            <button class="btn btn-primary">Adicionar</button>
+            <button class="btn btn-danger">Voltar</button>
+        </div>
     </div>
     <script src="styles/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/function.js"></script>
