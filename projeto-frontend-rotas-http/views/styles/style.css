@@ -1,3 +1,19 @@
 .oculto {
     display: none;
 }
+
+.list-group > .list-group-item {
+    border-top: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 6%;
+    min-height: 24%;
+    width: 80%;
+    position: relative;
+}
+
+li.list-group-item div {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8%;
+}
