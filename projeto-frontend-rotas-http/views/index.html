@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
-    <div class="container p-4 oculto">
+    <div id="formulario" class="container p-4 oculto">
       <h1 class="fw-bold fs-1 text-center">Adicionar Item</h1>
-      <form id="formulario">
+      <form id="campos">
         <div id="" class="my-3">
           <label for="tipo" class="form-label">Tipo de Item<span class="text-danger">*</span></label>
           <select id="tipo" name="tipo" class="form-select">
@@ -59,30 +59,24 @@
               <div class="invalid-feedback">Por favor preencha esse campo.</div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-md d-block mx-auto my-4 w-50">Adicionar</button>
+        <button type="submit" class="btn btn-primary btn-md d-block mx-auto mt-4 w-50">Adicionar</button>
+        <button name="redirecionar" type="submit" class="btn btn-success btn-md d-block mx-auto mt-3 w-50">Ver itens</button>
         <span id="result"></span>
       </form>
     </div>
-    <div class="container p-4 d-flex align-items-center justify-content-center">
-        <h1 class="position-fixed top-0 mt-3 fw-bold fs-1">Perfis</h1>
+    <div id="lista" class="container p-4 d-flex align-items-center justify-content-center">
+        <h1 class="position-fixed top-0 mt-3 fw-bold fs-1">Salvos</h1>
         <ul class="d-flex align-items-center list-group gap-5 text-center mt-5" style="width: 80%; height: 72vh; overflow-y: auto;">
-            <li class="list-group-item">
-                <h6>19/04/2025</h6>
-                <p class="fs-2 fw-bold">4006/004A</p>
-                <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-primary">Editar</button>
-                    <button class="btn btn-sm btn-danger">Deletar</button>
-                </div>
-            </li>
         </ul>
         <div class="d-flex flex-column gap-2 position-fixed bottom-0 mb-4 w-50">
-            <button class="btn btn-primary">Adicionar</button>
-            <button class="btn btn-danger">Voltar</button>
+            <button name="redirecionar" class="btn btn-danger mb-4">Voltar</button>
         </div>
     </div>
     <script src="styles/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/function.js"></script>
     <script src="assets/js/api.js"></script>
-    <script src="assets/js/evento.js"></script>
+    <script src="assets/js/telas.js"></script>
+    <script src="assets/js/lista/eventos-lista.js"></script>
+    <script src="assets/js/formulario/eventos-formulario.js"></script>
   </body>
 </html>

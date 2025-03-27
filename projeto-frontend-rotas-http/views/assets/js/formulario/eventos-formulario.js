@@ -47,9 +47,9 @@ inputsGerais
 
 const inputsTubo = formTubo.querySelectorAll('input, select')
 const inputsPerfil = formPerfil.querySelectorAll('input, select')
-const formulario = document.getElementById("formulario")
+const campos = document.getElementById("campos")
 
-formulario.addEventListener("submit", async (e) => {
+campos.addEventListener("submit", async (e) => {
     
     e.preventDefault()
     
@@ -77,7 +77,7 @@ formulario.addEventListener("submit", async (e) => {
     if (erro) return
     
     const dados = {}
-    const inputs = new FormData(formulario)
+    const inputs = new FormData(campos)
     
     inputs
         .forEach((valor, propriedade) => {
@@ -89,11 +89,11 @@ formulario.addEventListener("submit", async (e) => {
     const endpoint = "http://localhost:3000/salvar"
     
     try {
-        const dadosRecebidos = await salvarFerramenta(endpoint)
+        const dadosRecebidos = await salvarItem(endpoint, dados)
     }
     
     catch(error) {
-        console.error(error)
+        alert(error)
     }
     
     arrayInputs

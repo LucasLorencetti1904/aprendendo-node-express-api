@@ -1,5 +1,9 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .oculto {
-    display: none;
+    display: none !important;
 }
 
 .list-group > .list-group-item {
